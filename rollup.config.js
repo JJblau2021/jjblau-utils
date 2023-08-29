@@ -1,6 +1,6 @@
 import pkg from "./package.json" assert { type: "json" };
 import typescript from "@rollup/plugin-typescript";
-import dts from "rollup-plugin-dts";
+
 export default [
   {
     input: "src/main.ts",
@@ -20,22 +20,10 @@ export default [
       typescript({
         lib: ["es5", "es6", "dom"],
         target: "es5",
+        outDir: "dist",
+        declaration: true,
+        declarationDir: "dist",
       }),
     ],
-  },
-  {
-    input: "src/main.ts",
-    output: [
-      {
-        file: pkg.main.replace(".js", ".d.ts"),
-        format: "esm",
-      },
-
-      {
-        file: pkg.module.replace(".js", ".d.ts"),
-        format: "esm",
-      },
-    ],
-    plugins: [dts()],
   },
 ];
