@@ -1,5 +1,8 @@
 import pkg from "./package.json" assert { type: "json" };
 import typescript from "@rollup/plugin-typescript";
+// import strip from '@rollup/plugin-strip';
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
 
 export default [
   {
@@ -24,6 +27,8 @@ export default [
         declaration: true,
         declarationDir: "dist",
       }),
+      resolve(),
+      commonjs(),
     ],
   },
 ];
